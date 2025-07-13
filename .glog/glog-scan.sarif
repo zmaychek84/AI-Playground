@@ -1,0 +1,375 @@
+{
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "Glog.AI",
+          "organization": "Glog.AI",
+          "fullName": "Glog, Making software more secure",
+          "version": "1.0.0",
+          "semanticVersion": "1.0.0",
+          "informationUri": "https://www.glog.ai",
+          "rules": [
+            {
+              "id": "glog-1999dc6d-eeb2-4f9d-99b4-4dba19cf1b21",
+              "help": {
+                "text": "",
+                "markdown": "### Description\n\nThe vulnerability \"Security Concern: Using verify=False in Call to Requests Disables SSL Certificate Checks\" arises when the `verify` parameter in a `requests` call is set to `False`. This setting disables SSL certificate verification, which can expose the application to man-in-the-middle (MITM) attacks. By not verifying the SSL certificate, the application cannot ensure that it is communicating with the intended server, potentially allowing attackers to intercept or alter the data being transmitted.\n\n### General Mitigation Advice\n\nTo mitigate this vulnerability, always ensure that SSL certificate verification is enabled by setting the `verify` parameter to `True` or by omitting it, as `True` is the default value. This ensures that the SSL certificate of the server is checked against trusted certificate authorities, providing a secure communication channel.\n\n### Source Code Fix Recommendation\n\nHere is the recommended fix for the specific vulnerability sink:\n\n```python\nimport requests\n\nurl = \"https://example.com\"\nresponse = requests.get(url, stream=True, verify=True)\n```\n\n### Library Dependencies\n\nTo execute the code example properly, the following library dependency is required:\n\n- `requests`: This library is used to make HTTP requests in Python. It can be installed via pip:\n\n  ```bash\n  pip install requests\n  ```\n\n### Relevant Resources\n\n- [OWASP Transport Layer Protection Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Protection_Cheat_Sheet.html)\n- [OWASP Secure Coding Practices - Quick Reference Guide](https://owasp.org/www-pdf-archive/OWASP_SCP_Quick_Reference_Guide_v2.pdf)\n\n### Common Weakness Enumeration\n\n- [CWE-295: Improper Certificate Validation](https://cwe.mitre.org/data/definitions/295.html)"
+              },
+              "properties": {
+                "tags": [
+                  "B501"
+                ]
+              }
+            },
+            {
+              "id": "glog-58b6d87f-2735-4768-9a65-8e24ce0ffcf3",
+              "help": {
+                "text": "",
+                "markdown": "### Description\n\nThe vulnerability \"Utilization of Weak MD5 Hash for Security: Consideration of usedforsecurity=False\" arises when the MD5 hashing algorithm is used for security purposes. MD5 is considered cryptographically broken and unsuitable for further use due to its vulnerability to collision attacks. In Python, the `hashlib` library provides the MD5 hashing function, which can be used inappropriately for security-sensitive operations. The specific vulnerability occurs when `hashlib.md5()` is used without setting `usedforsecurity=False`, indicating that the hash is not intended for security purposes.\n\n### General Mitigation Advice\n\nTo mitigate this vulnerability, it is recommended to use a more secure hashing algorithm, such as SHA-256, for cryptographic purposes. Additionally, if MD5 must be used for non-security purposes, ensure that `usedforsecurity=False` is explicitly set to indicate that the hash is not being used for security.\n\n### Source Code Fix Recommendation\n\nReplace the use of MD5 with a more secure hashing algorithm like SHA-256. If MD5 is used for non-security purposes, set `usedforsecurity=False`.\n\n#### Vulnerable Code\n\n```python\nimport hashlib\n\nfile_hash = hashlib.md5()\n```\n\n#### Fixed Code\n\n```python\nimport hashlib\n\n# Use SHA-256 for security purposes\nfile_hash = hashlib.sha256()\n\n# If MD5 is used for non-security purposes, set usedforsecurity=False\n# file_hash = hashlib.md5(usedforsecurity=False)\n```\n\n### Library Dependencies\n\nThe code example requires the following library to execute properly:\n\n- `hashlib`: This is a built-in library in Python, so no additional installation is required.\n\n### Relevant Resources\n\n- [OWASP Cryptographic Storage Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cryptographic_Storage_Cheat_Sheet.html)\n\n### Common Weakness Enumeration (CWE)\n\n- [CWE-327: Use of a Broken or Risky Cryptographic Algorithm](https://cwe.mitre.org/data/definitions/327.html)"
+              },
+              "properties": {
+                "tags": [
+                  "B324"
+                ]
+              }
+            },
+            {
+              "id": "glog-7c2efb7f-9c87-416c-b805-b516878e37a0",
+              "help": {
+                "text": "",
+                "markdown": "### Description\n\nThe vulnerability \"Utilization of Weak MD5 Hash for Security: Consideration of usedforsecurity=False\" arises when the MD5 hashing algorithm is used for security purposes. MD5 is considered cryptographically broken and unsuitable for further use due to its vulnerability to collision attacks. In Python, the `hashlib` library provides the MD5 hashing function, which can be used inappropriately for security-sensitive operations. The specific vulnerability occurs when `hashlib.md5()` is used without setting `usedforsecurity=False`, indicating that the hash is not intended for security purposes.\n\n### General Mitigation Advice\n\nTo mitigate this vulnerability, it is recommended to use a more secure hashing algorithm, such as SHA-256, for cryptographic purposes. Additionally, if MD5 must be used for non-security purposes, ensure that `usedforsecurity=False` is explicitly set to indicate that the hash is not being used for security.\n\n### Source Code Fix Recommendation\n\nReplace the use of MD5 with a more secure hashing algorithm like SHA-256. If MD5 is used for non-security purposes, set `usedforsecurity=False`.\n\n#### Vulnerable Code\n\n```python\nimport hashlib\n\nfile_hash = hashlib.md5()\n```\n\n#### Fixed Code\n\n```python\nimport hashlib\n\n# Use SHA-256 for security purposes\nfile_hash = hashlib.sha256()\n\n# If MD5 is used for non-security purposes, set usedforsecurity=False\n# file_hash = hashlib.md5(usedforsecurity=False)\n```\n\n### Library Dependencies\n\nThe code example requires the following library to execute properly:\n\n- `hashlib`: This is a built-in library in Python, so no additional installation is required.\n\n### Relevant Resources\n\n- [OWASP Cryptographic Storage Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cryptographic_Storage_Cheat_Sheet.html)\n\n### Common Weakness Enumeration (CWE)\n\n- [CWE-327: Use of a Broken or Risky Cryptographic Algorithm](https://cwe.mitre.org/data/definitions/327.html)"
+              },
+              "properties": {
+                "tags": [
+                  "B324"
+                ]
+              }
+            },
+            {
+              "id": "glog-e78dd10f-f7c9-4ba1-a4e0-7d05e6388d1d",
+              "help": {
+                "text": "",
+                "markdown": "### Description\n\nIn Python, the `requests` library is commonly used for making HTTP requests. A common security vulnerability arises when SSL certificate verification is disabled by setting `verify=False` in a call to `requests.get()` or similar methods. This practice exposes the application to man-in-the-middle (MITM) attacks, where an attacker could intercept and potentially alter the data being transmitted. Disabling SSL certificate checks undermines the security guarantees provided by HTTPS, such as data integrity and confidentiality.\n\n### General Mitigation Advice\n\n1. **Enable SSL Verification**: Always ensure that SSL certificate verification is enabled. This is the default behavior of the `requests` library, so simply avoid setting `verify=False`.\n\n2. **Use Trusted Certificates**: Ensure that your application trusts only certificates from reputable Certificate Authorities (CAs). You can specify a custom CA bundle if needed.\n\n3. **Update Dependencies**: Regularly update the `requests` library and other dependencies to their latest versions to benefit from security patches and improvements.\n\n4. **Environment Configuration**: In environments where certificate verification might fail due to self-signed certificates (e.g., development), consider using a trusted CA or configuring the environment to trust the necessary certificates.\n\n### Source Code Fix Recommendation\n\nTo fix the vulnerability, remove the `verify=False` parameter or set it to `True`:\n\n```python\nimport requests\n\n# Secure request with SSL verification enabled\nresponse = requests.get('https://example.com', verify=True)\n```\n\n### Library Dependencies\n\nTo execute the code example properly, the following library is required:\n\n- `requests`: This is the primary library used for making HTTP requests in Python.\n\nYou can install it using pip:\n\n```bash\npip install requests\n```\n\n### Relevant OWASP Resources\n\n- [OWASP Transport Layer Protection Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Protection_Cheat_Sheet.html)\n- [OWASP Top Ten: A6-Security Misconfiguration](https://owasp.org/www-project-top-ten/2017/A6_2017-Security_Misconfiguration)\n\n### Common Weakness Enumeration (CWE)\n\n- [CWE-295: Improper Certificate Validation](https://cwe.mitre.org/data/definitions/295.html)"
+              },
+              "properties": {
+                "tags": [
+                  "B501"
+                ]
+              }
+            },
+            {
+              "id": "glog-66887100-2089-476f-ac62-90a764613550",
+              "help": {
+                "text": "",
+                "markdown": "### Description\n\nThe vulnerability \"Security Concern: Using verify=False in Call to Requests Disables SSL Certificate Checks\" arises when the `verify` parameter in a `requests` call is set to `False`. This setting disables SSL certificate verification, which can expose the application to man-in-the-middle (MITM) attacks. By not verifying the SSL certificate, the application cannot ensure that it is communicating with the intended server, potentially allowing attackers to intercept or alter the data being transmitted.\n\n### General Mitigation Advice\n\nTo mitigate this vulnerability, always ensure that SSL certificate verification is enabled by setting the `verify` parameter to `True` or by omitting it, as `True` is the default value. This ensures that the SSL certificate of the server is checked against trusted certificate authorities, providing a secure communication channel.\n\n### Source Code Fix Recommendation\n\nHere is the recommended fix for the specific vulnerability sink:\n\n```python\nimport requests\n\nurl = \"https://example.com\"\nresponse = requests.get(url, stream=True, verify=True)\n```\n\n### Library Dependencies\n\nTo execute the code example properly, the following library dependency is required:\n\n- `requests`: This library is used to make HTTP requests in Python. It can be installed via pip:\n\n  ```bash\n  pip install requests\n  ```\n\n### Relevant Resources\n\n- [OWASP Transport Layer Protection Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Protection_Cheat_Sheet.html)\n- [OWASP Secure Coding Practices - Quick Reference Guide](https://owasp.org/www-pdf-archive/OWASP_SCP_Quick_Reference_Guide_v2.pdf)\n\n### Common Weakness Enumeration\n\n- [CWE-295: Improper Certificate Validation](https://cwe.mitre.org/data/definitions/295.html)"
+              },
+              "properties": {
+                "tags": [
+                  "B501"
+                ]
+              }
+            },
+            {
+              "id": "glog-32373aba-ad5a-46a7-b52d-e326f436cacf",
+              "help": {
+                "text": "",
+                "markdown": "### Description\n\nIn Python, the `requests` library is commonly used for making HTTP requests. A common security vulnerability arises when SSL certificate verification is disabled by setting `verify=False` in a call to `requests.get()` or similar methods. This practice exposes the application to man-in-the-middle (MITM) attacks, where an attacker could intercept and potentially alter the data being transmitted. Disabling SSL certificate checks undermines the security guarantees provided by HTTPS, such as data integrity and confidentiality.\n\n### General Mitigation Advice\n\n1. **Enable SSL Verification**: Always ensure that SSL certificate verification is enabled. This is the default behavior of the `requests` library, so simply avoid setting `verify=False`.\n\n2. **Use Trusted Certificates**: Ensure that your application trusts only certificates from reputable Certificate Authorities (CAs). You can specify a custom CA bundle if needed.\n\n3. **Update Dependencies**: Regularly update the `requests` library and other dependencies to their latest versions to benefit from security patches and improvements.\n\n4. **Environment Configuration**: In environments where certificate verification might fail due to self-signed certificates (e.g., development), consider using a trusted CA or configuring the environment to trust the necessary certificates.\n\n### Source Code Fix Recommendation\n\nTo fix the vulnerability, remove the `verify=False` parameter or set it to `True`:\n\n```python\nimport requests\n\n# Secure request with SSL verification enabled\nresponse = requests.get('https://example.com', verify=True)\n```\n\n### Library Dependencies\n\nTo execute the code example properly, the following library is required:\n\n- `requests`: This is the primary library used for making HTTP requests in Python.\n\nYou can install it using pip:\n\n```bash\npip install requests\n```\n\n### Relevant OWASP Resources\n\n- [OWASP Transport Layer Protection Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Protection_Cheat_Sheet.html)\n- [OWASP Top Ten: A6-Security Misconfiguration](https://owasp.org/www-project-top-ten/2017/A6_2017-Security_Misconfiguration)\n\n### Common Weakness Enumeration (CWE)\n\n- [CWE-295: Improper Certificate Validation](https://cwe.mitre.org/data/definitions/295.html)"
+              },
+              "properties": {
+                "tags": [
+                  "B501"
+                ]
+              }
+            },
+            {
+              "id": "glog-7e072fbe-f470-4eaf-98b1-093ab144fb00",
+              "help": {
+                "text": "",
+                "markdown": "### Description\n\nThe vulnerability arises when SSL certificate verification is disabled in HTTP requests using the `requests` library in Python. By setting `verify=False`, the application is susceptible to man-in-the-middle (MITM) attacks, where an attacker can intercept and potentially alter the data being transmitted. This is because the SSL certificate, which ensures the authenticity and integrity of the data, is not being checked.\n\n### General Mitigation Advice\n\n1. **Enable SSL Verification**: Always ensure that SSL certificate verification is enabled. This is the default behavior of the `requests` library.\n2. **Use Trusted Certificates**: Ensure that your application uses a trusted certificate authority (CA) bundle.\n3. **Environment Configuration**: Avoid setting `verify=False` in production environments. If necessary for development, ensure it is not carried over to production.\n4. **Error Handling**: Implement proper error handling to manage SSL certificate errors gracefully.\n\n### Source Code Fix Recommendation\n\nTo fix the vulnerability, modify the code to enable SSL certificate verification:\n\n```python\nimport requests\n\n# Ensure SSL certificate verification is enabled\nresponse = requests.head(file.url, verify=True, headers=headers, allow_redirects=True)\n```\n\n### Library Dependencies\n\nTo execute the code example properly, the following library is required:\n\n- `requests`: This is the primary library used for making HTTP requests in Python.\n\nYou can install it using pip:\n\n```bash\npip install requests\n```\n\n### Relevant Resources\n\n- [OWASP Transport Layer Protection Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Protection_Cheat_Sheet.html)\n- [OWASP Secure Coding Practices - Quick Reference Guide](https://owasp.org/www-project-secure-coding-practices-quick-reference-guide/)\n\n### Common Weakness Enumeration (CWE)\n\n- [CWE-295: Improper Certificate Validation](https://cwe.mitre.org/data/definitions/295.html)"
+              },
+              "properties": {
+                "tags": [
+                  "B501"
+                ]
+              }
+            }
+          ],
+          "language": "en-US",
+          "contents": [
+            "localizedData",
+            "nonLocalizedData"
+          ],
+          "isComprehensive": false
+        }
+      },
+      "language": "en-US",
+      "results": [
+        {
+          "ruleId": "glog-1999dc6d-eeb2-4f9d-99b4-4dba19cf1b21",
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "Call to requests with verify=False disabling SSL certificate checks, security issue."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "service/file_downloader.py"
+                },
+                "region": {
+                  "startLine": 76,
+                  "startColumn": 24,
+                  "endLine": 76,
+                  "endColumn": 68,
+                  "snippet": {
+                    "text": "            response = requests.get(url, stream=True, verify=False)\n"
+                  }
+                },
+                "contextRegion": {
+                  "startLine": 75,
+                  "endLine": 77,
+                  "snippet": {
+                    "text": "        else:\n            response = requests.get(url, stream=True, verify=False)\n            fw = open(file_path, \"wb\")\n"
+                  }
+                }
+              }
+            }
+          ],
+          "properties": {
+            "issue_severity": "HIGH",
+            "issue_confidence": "HIGH"
+          }
+        },
+        {
+          "ruleId": "glog-58b6d87f-2735-4768-9a65-8e24ce0ffcf3",
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "Use of weak MD5 hash for security. Consider usedforsecurity=False"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "backend-shared/utils.py"
+                },
+                "region": {
+                  "startLine": 141,
+                  "startColumn": 21,
+                  "endLine": 141,
+                  "endColumn": 34,
+                  "snippet": {
+                    "text": "        file_hash = hashlib.md5()\n"
+                  }
+                },
+                "contextRegion": {
+                  "startLine": 140,
+                  "endLine": 142,
+                  "snippet": {
+                    "text": "    with open(file_path, \"rb\") as f:\n        file_hash = hashlib.md5()\n        while chunk := f.read(8192):\n"
+                  }
+                }
+              }
+            }
+          ],
+          "properties": {
+            "issue_severity": "HIGH",
+            "issue_confidence": "HIGH"
+          }
+        },
+        {
+          "ruleId": "glog-7c2efb7f-9c87-416c-b805-b516878e37a0",
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "Use of weak MD5 hash for security. Consider usedforsecurity=False"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "backend-shared/utils.py"
+                },
+                "region": {
+                  "startLine": 148,
+                  "startColumn": 17,
+                  "endLine": 148,
+                  "endColumn": 30,
+                  "snippet": {
+                    "text": "    file_hash = hashlib.md5()\n"
+                  }
+                },
+                "contextRegion": {
+                  "startLine": 147,
+                  "endLine": 149,
+                  "snippet": {
+                    "text": "    \"\"\"Calculate the MD5 hash of a file stream\"\"\"\n    file_hash = hashlib.md5()\n    for chunk in iter(lambda: file_stream.read(8192), b\"\"):\n"
+                  }
+                }
+              }
+            }
+          ],
+          "properties": {
+            "issue_severity": "HIGH",
+            "issue_confidence": "HIGH"
+          }
+        },
+        {
+          "ruleId": "glog-e78dd10f-f7c9-4ba1-a4e0-7d05e6388d1d",
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "Call to requests with verify=False disabling SSL certificate checks, security issue."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "service/model_downloader.py"
+                },
+                "region": {
+                  "startLine": 330,
+                  "startColumn": 24,
+                  "endLine": 331,
+                  "endColumn": 14,
+                  "snippet": {
+                    "text": "            response = requests.get(\n"
+                  }
+                },
+                "contextRegion": {
+                  "startLine": 332,
+                  "endLine": 339,
+                  "snippet": {
+                    "text": "                stream=True,\n                verify=False,\n                headers=headers,\n            )\n            fw = open(file.save_filename, \"ab\")\n        else:\n            response = requests.get(\n                file.url, stream=True, verify=False, headers=headers\n"
+                  }
+                }
+              }
+            }
+          ],
+          "properties": {
+            "issue_severity": "HIGH",
+            "issue_confidence": "HIGH"
+          }
+        },
+        {
+          "ruleId": "glog-66887100-2089-476f-ac62-90a764613550",
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "Call to requests with verify=False disabling SSL certificate checks, security issue."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "service/file_downloader.py"
+                },
+                "region": {
+                  "startLine": 68,
+                  "startColumn": 24,
+                  "endLine": 69,
+                  "endColumn": 14,
+                  "snippet": {
+                    "text": "            response = requests.get(url, stream=True, verify=False)\n"
+                  }
+                },
+                "contextRegion": {
+                  "startLine": 70,
+                  "endLine": 77,
+                  "snippet": {
+                    "text": "                stream=True,\n                verify=False,\n                headers={\"Range\": f\"bytes={start_pos}-\"},\n            )\n            fw = open(file_path, \"ab\")\n        else:\n            response = requests.get(url, stream=True, verify=False)\n            fw = open(file_path, \"wb\")\n"
+                  }
+                }
+              }
+            }
+          ],
+          "properties": {
+            "issue_severity": "HIGH",
+            "issue_confidence": "HIGH"
+          }
+        },
+        {
+          "ruleId": "glog-32373aba-ad5a-46a7-b52d-e326f436cacf",
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "Call to requests with verify=False disabling SSL certificate checks, security issue."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "service/model_downloader.py"
+                },
+                "region": {
+                  "startLine": 338,
+                  "startColumn": 24,
+                  "endLine": 339,
+                  "endColumn": 14,
+                  "snippet": {
+                    "text": "            response = requests.get(\n"
+                  }
+                },
+                "contextRegion": {
+                  "startLine": 338,
+                  "endLine": 342,
+                  "snippet": {
+                    "text": "            response = requests.get(\n                file.url, stream=True, verify=False, headers=headers\n            )\n            fw = open(file.save_filename, \"wb\")\n\n"
+                  }
+                }
+              }
+            }
+          ],
+          "properties": {
+            "issue_severity": "HIGH",
+            "issue_confidence": "HIGH"
+          }
+        },
+        {
+          "ruleId": "glog-7e072fbe-f470-4eaf-98b1-093ab144fb00",
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "Call to requests with verify=False disabling SSL certificate checks, security issue."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "service/model_downloader.py"
+                },
+                "region": {
+                  "startLine": 364,
+                  "startColumn": 20,
+                  "endLine": 364,
+                  "endColumn": 96,
+                  "snippet": {
+                    "text": "        response = requests.head(file.url, verify=False, headers=headers, allow_redirects=True)\n"
+                  }
+                },
+                "contextRegion": {
+                  "startLine": 363,
+                  "endLine": 365,
+                  "snippet": {
+                    "text": "\n        response = requests.head(file.url, verify=False, headers=headers, allow_redirects=True)\n\n"
+                  }
+                }
+              }
+            }
+          ],
+          "properties": {
+            "issue_severity": "HIGH",
+            "issue_confidence": "HIGH"
+          }
+        }
+      ],
+      "newlineSequences": [
+        "\r\n",
+        "\n"
+      ]
+    }
+  ]
+}
